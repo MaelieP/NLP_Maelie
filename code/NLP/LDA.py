@@ -8,6 +8,7 @@ import numpy as np
 import os
 
 tqdm.pandas()  # Pour ajouter une barre de progression aux opérations pandas
+os.makedirs('outputs/databases', exist_ok=True)
 
 nlp = spacy.load('fr_core_news_sm')
 
@@ -36,14 +37,14 @@ def preprocess_LDA(text):
               and len(token.lemma_) > 2]
     return tokens
 
-file = 'outputs/databases/lda_bertopic_resultats_complet.csv'
+file = 'data/full/archelect_full_clean_with_chom.csv'
 df = pd.read_csv(file)
 """df['processed_text'] = df['processed_text'].apply(
     lambda x: ast.literal_eval(x) if isinstance(x, str) and x.startswith('[') else []
 )"""
 # Prétraitement des documents
 df['processed_text'] = df['full_text'].progress_apply(preprocess_LDA)
-df.to_csv('outputs/databases/lda_bertopic_resultats_complet.csv', index=False, encoding='utf-8')
+df.to_csv('outputs/databases/lda_resultats_complet.csv', index=False, encoding='utf-8')
 
 print(df['processed_text'].head())
 # Créer le dictionnaire (liste de tous les mots uniques retenus)
@@ -101,5 +102,4 @@ df['lda_intensity_chomage'] = df['lda_prob_topic_5']
 
 
 
-os.makedirs('outputs/databases', exist_ok=True)
-df.drop(columns=['lda_results']).to_csv('outputs/databases/lda_bertopic_resultats_complet.csv', index=False)
+df.drop(columns=['lda_results']).to_csv('outputs/databases/lda_resultats_complet.csv', index=False)
