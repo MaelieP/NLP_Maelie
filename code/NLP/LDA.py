@@ -5,6 +5,7 @@ import spacy
 from tqdm import tqdm
 import ast
 import numpy as np
+import os
 
 tqdm.pandas()  # Pour ajouter une barre de progression aux opérations pandas
 
@@ -97,4 +98,8 @@ for i in range(10):
 df['lda_intensity_chomage'] = df['lda_prob_topic_5']
 
 # Sauvegarde finale
+
+
+
+os.makedirs('outputs/databases', exist_ok=True)
 df.drop(columns=['lda_results']).to_csv('outputs/databases/lda_bertopic_resultats_complet.csv', index=False)

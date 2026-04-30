@@ -27,4 +27,4 @@ for annee in ['1988', '1993']:
     print(f"Mapping terminé : {nb_succes} textes intégrés sur {len(df_final)} lignes.")
 
     # 5. Sauvegarder le résultat final
-    df_final.to_csv(f'data/final/final_dirty/archelect_{annee}_complet.csv', index=False, encoding='utf-8')
+    df_final.to_csv(f'data/final_dirty/archelect_{annee}_complet.csv', index=False, encoding='utf-8')
