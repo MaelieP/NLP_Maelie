@@ -13,7 +13,7 @@ def get_total_chomage_intensity(prob_row, target_ids=[3, 9, 12, 14, 15]):
     return 0.0
 
 # On applique cela à TOUTES les lignes du DataFrame
-file = 'outputs/databases/lda_bertopic_resultats_complet.csv'
+file = 'outputs/lda_bertopic_resultats_complet.csv'
 df = pd.read_csv(file, dtype={'lda_topic_id': 'int64', 'bertopic_id': 'int64'})
 df['bertopic_probability'] = df['bertopic_probability'].apply(ast.literal_eval)
 
